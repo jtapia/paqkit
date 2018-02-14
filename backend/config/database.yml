@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  pool: 20
+  timeout: 10000
+  checkout_timeout: 10000
+
+development:
+  <<: *default
+  database: paqkit_development
+  host: localhost
+
+test:
+  <<: *default
+  database: paqkit_test
+
+production: &deploy
+  <<: *default
+  database: paqkit_production
+  url: <%= ENV['DATABASE_URL'] %>
